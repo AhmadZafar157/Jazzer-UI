@@ -1,0 +1,38 @@
+<h2 mat-dialog-title>Connect with TeraData</h2>
+<mat-dialog-content class="mat-typography">
+  <div class="td_credentials" *ngFor="let item of existing_TD_credentials">
+    <span>{{item.username}}</span>
+    <span>{{item.host}}</span>
+    <mat-chip *ngIf="item.status == false" style="cursor: pointer; background-color: rgb(106, 220, 102);" (click)="connectToTD(item)">Connect</mat-chip>
+    <mat-chip *ngIf="item.status == true" style="cursor: pointer; background-color: rgb(214, 75, 75);" (click)="disconnectFromTD(item)">Disconnect</mat-chip>
+  </div>
+  <br>
+  <button mat-button cdkFocusInitial (click)="onAddNew()">Add New</button>
+  <button mat-button [mat-dialog-close]="true" cdkFocusInitial>Colse</button>
+
+  <div *ngIf="addNew" class="tdForm">
+    <form [formGroup]="addTDForm" class="example-form login" (ngSubmit)="onSubmit()">
+      <mat-form-field class="input">
+        <mat-label>Host</mat-label>
+        <input matInput formControlName="host" placeholder="Hostname">
+      </mat-form-field>
+  
+      <mat-form-field class="input">
+          <mat-label>Data Base</mat-label>
+          <input formControlName="database" matInput placeholder="DB">
+      </mat-form-field>
+
+      <mat-form-field class="input">
+        <mat-label>Username</mat-label>
+        <input matInput formControlName="username" placeholder="Username">
+      </mat-form-field>
+  
+      <mat-form-field class="input">
+          <mat-label>Password</mat-label>
+          <input formControlName="password" matInput type="password" placeholder="Password">
+      </mat-form-field>
+  
+      <button type="submit" mat-raised-button color="primary">Submit</button>
+    </form>
+  </div>
+</mat-dialog-content>

@@ -1,0 +1,16 @@
+<div class="head">
+    <span mat-dialog-title>All Campaigns</span>
+    <button mat-button cdkFocusInitial [mat-dialog-close]="true" (click)="createNewCampaign()" >Create New</button>
+</div>
+<mat-dialog-content class="mat-typography">
+    <div class="campaigns" *ngFor="let item of campaigns">
+        <span style="width: 20%;">{{item.title}}</span>
+        <span style="width: 10%;">{{item.stakeholder}}</span>
+        <span style="width: 10%;">{{item.status}}</span>
+        <span style="width: 30%;">{{item.createdAt}}</span>
+        <mat-chip style="cursor: pointer; background-color: rgb(230, 33, 33);">Details</mat-chip>
+        <mat-chip *ngIf="user.user_type == 'cvm_type'" [disabled]="item.status == 'Executed' || item.status == 'Existing'" style="cursor: pointer; background-color: rgb(109, 103, 239);" (click)="execute(item)">Execute</mat-chip>
+        <mat-chip *ngIf="user.user_type == 'non_cvm_type'" style="cursor: pointer; background-color: rgb(109, 103, 239);">Park Request</mat-chip>
+    </div>
+    <br>
+</mat-dialog-content>

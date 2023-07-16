@@ -1,0 +1,74 @@
+<kt-card>
+
+<form [formGroup]="campaignFrom" class="example-form compaign"  (ngSubmit)="onSubmit()">
+    <h1>Create Compaign</h1>
+
+    <mat-form-field class="input">
+        <mat-label>Campaign Title</mat-label>
+        <input matInput formControlName="title" placeholder="Title" value="">
+    </mat-form-field>
+    <mat-form-field class="input">
+        <mat-label>SMS Text</mat-label>
+        <input matInput formControlName="sms_text" placeholder="SMS Text" value="">
+    </mat-form-field>
+    <mat-form-field class="input">
+        <mat-label>Masking</mat-label>
+        <mat-select formControlName="MASKING">
+          <mat-option *ngFor="let mask of masks" [value]="mask.value">
+            {{mask.label}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field class="input">
+        <mat-label>Stakeholder</mat-label>
+        <mat-select formControlName="stakeholder">
+          <mat-option *ngFor="let stake of stakeholders" [value]="stake.value">
+            {{stake.label}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    
+    <mat-form-field class="input">
+        <mat-label>Choose a date</mat-label>
+        <input formControlName="BROADCAST_DATE" matInput [matDatepicker]="picker">
+        <mat-hint>MM/DD/YYYY</mat-hint>
+        <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+      </mat-form-field>
+
+      <mat-form-field class="input">
+        <mat-label>Compaign Name</mat-label>
+        <mat-select formControlName="campaign_name">
+          <mat-option *ngFor="let compaign of compaigns" [value]="compaign.value">
+            {{compaign.label}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field class="input">
+        <mat-label>Channel</mat-label>
+        <mat-select formControlName="channel">
+          <mat-option *ngFor="let channel of channels" [value]="channel.value">
+            {{channel.label}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field class="input">
+        <mat-label>Bases</mat-label>
+        <mat-select formControlName="base_list">
+          <mat-option *ngFor="let base of bases" [value]="base.value">
+            {{base.label}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+      <mat-button-toggle-group formControlName="submissionType" name="submissionType" aria-label="submissionType">
+        <mat-button-toggle value="0">Save Campaign</mat-button-toggle>
+        <mat-button-toggle value="1">Request CVM Approval</mat-button-toggle>
+    </mat-button-toggle-group>
+    <br>
+    <button mat-raised-button color="primary">Submit</button>
+</form>
+
+</kt-card>

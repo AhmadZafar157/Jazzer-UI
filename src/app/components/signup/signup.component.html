@@ -1,0 +1,32 @@
+<kt-card>
+    <form [formGroup]="signupForm" class="example-form" class="signUp" (ngSubmit)="onSubmit()">
+        <h1>Sign Up</h1>
+        <mat-form-field class="input">
+            <mat-label>Full Name</mat-label>
+            <input formControlName="name" matInput placeholder="Full Name" value="">
+          </mat-form-field>
+    
+        <mat-form-field class="input">
+          <mat-label>Email</mat-label>
+          <input matInput formControlName="email" placeholder="Example@gmail.com" value="">
+        </mat-form-field>
+    
+        <mat-form-field class="input">
+            <mat-label>Password</mat-label>
+            <input type="password" formControlName="password" matInput placeholder="Password" value="">
+        </mat-form-field>
+    
+        <mat-form-field class="input">
+            <mat-label>Confirm Password</mat-label>
+            <input formControlName="confirmPassword" type="password" matInput placeholder="Password" value="">
+        </mat-form-field>
+    
+        <mat-button-toggle-group formControlName="user_type" name="userType" aria-label="User Type">
+            <mat-button-toggle value="cvm_type">CVM</mat-button-toggle>
+            <mat-button-toggle value="non_cvm_type">NON CVM</mat-button-toggle>
+        </mat-button-toggle-group>
+        <br>
+      
+        <button mat-raised-button color="primary">Register</button>
+    </form>
+</kt-card>

@@ -1,0 +1,16 @@
+<kt-card>
+  <form [formGroup]="loginForm" class="example-form login" (ngSubmit)="onSubmit()">
+    <h1>LOGIN</h1>
+    <mat-form-field class="input">
+      <mat-label>Email</mat-label>
+      <input matInput formControlName="email" placeholder="Example@gmail.com">
+    </mat-form-field>
+
+    <mat-form-field class="input">
+        <mat-label>Password</mat-label>
+        <input formControlName="password" type="password" matInput placeholder="Password">
+      </mat-form-field>
+
+    <button type="submit" mat-raised-button color="primary">Login</button>
+  </form>
+</kt-card>
