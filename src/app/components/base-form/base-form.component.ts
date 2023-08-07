@@ -39,14 +39,14 @@ export class BaseFormComponent {
       maxRech:["" ],
       minBal: ['' ],
       maxBal:["" ],
-      minDor: ['' ],
+      minDor: ["" ],
       maxDor:["" ],
       dataProducts: [[] ],
       hybridProducts:[[] ],
       voiceProducts:[[] ],
-      min2gDor: ['' ],
+      min2gDor: ["" ],
       max2gDor:["" ],
-      min3gDor: ['' ],
+      min3gDor: ["" ],
       max3gDor:["" ],
       min4gDor: ['' ],
       max4gDor:["" ],
@@ -61,7 +61,7 @@ export class BaseFormComponent {
       max_stay_city: formValues.max_stay_city,
       base_name: formValues.base_name,
       Current_Balance: [formValues.minBal, formValues.maxBal],
-      RECHARGE_DORMANCY: [formValues.minDor, formValues.maxDor]
+      // RECHARGE_DORMANCY: [formValues.minDor, formValues.maxDor]
     }
     console.log(payload);
 

@@ -29,6 +29,8 @@ import { MyHttpInterceptor } from './http.interceptor';
 import {MatChipsModule} from '@angular/material/chips';
 import { BasesComponent } from './components/bases/bases.component';
 import { CampaignsComponent } from './components/campaigns/campaigns.component';
+import { ShowBaseComponent } from './components/show-base/show-base.component';
+import { ShowCampaignComponent } from './components/show-campaign/show-campaign.component';
 
 @NgModule({
   declarations: [
@@ -41,7 +43,9 @@ import { CampaignsComponent } from './components/campaigns/campaigns.component';
     DashboardComponent,
     ConnectTdComponent,
     BasesComponent,
-    CampaignsComponent
+    CampaignsComponent,
+    ShowBaseComponent,
+    ShowCampaignComponent
   ],
   imports: [
     BrowserModule,

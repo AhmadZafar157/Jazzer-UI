@@ -8,7 +8,7 @@
         <span style="width: 10%;">{{item.stakeholder}}</span>
         <span style="width: 10%;">{{item.status}}</span>
         <span style="width: 30%;">{{item.createdAt}}</span>
-        <mat-chip style="cursor: pointer; background-color: rgb(230, 33, 33);">Details</mat-chip>
+        <mat-chip (click)="showCampaign(item)" style="cursor: pointer; background-color: rgb(230, 33, 33);">Details</mat-chip>
         <mat-chip *ngIf="user.user_type == 'cvm_type'" [disabled]="item.status == 'Executed' || item.status == 'Existing'" style="cursor: pointer; background-color: rgb(109, 103, 239);" (click)="execute(item)">Execute</mat-chip>
         <mat-chip *ngIf="user.user_type == 'non_cvm_type'" style="cursor: pointer; background-color: rgb(109, 103, 239);">Park Request</mat-chip>
     </div>

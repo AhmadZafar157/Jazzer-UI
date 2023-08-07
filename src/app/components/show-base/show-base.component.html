@@ -1,0 +1,13 @@
+<div class="head">
+    <span mat-dialog-title> {{currentBase.base_name}}</span>
+</div>
+<mat-dialog-content class="mat-typography">
+    <div class="bases" *ngFor="let item of objectToArray(currentBase)">
+        <span *ngIf="item.value!=null"> {{ item.key }}: {{ item.value }}</span><br>
+        <!-- <span *ngIf="item.count" style="width: 10%;">{{item.count}}</span>
+        <span *ngIf="item.createdAt" style="width: 30%;">{{item.createdAt}}</span> -->
+
+        <!-- <mat-chip (click)="openBase(item)" style="cursor: pointer; background-color: rgb(230, 33, 33);">Details</mat-chip> -->
+    </div>
+    <br>
+</mat-dialog-content>

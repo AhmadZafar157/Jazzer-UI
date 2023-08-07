@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { JazzerService } from 'src/app/jazzer.service';
 import { Router } from '@angular/router';
+import { ShowCampaignComponent } from '../show-campaign/show-campaign.component';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-campaigns',
@@ -13,7 +15,7 @@ export class CampaignsComponent {
   campaigns: any;
   user: any
 
-  constructor(private router: Router, private jazzerService: JazzerService, private _snackBar: MatSnackBar) {}
+  constructor(public dialog: MatDialog, private router: Router, private jazzerService: JazzerService, private _snackBar: MatSnackBar) {}
 
   ngOnInit(): void {
     // Initialization logic goes here
@@ -43,7 +45,10 @@ export class CampaignsComponent {
       }
     );
   }
-
+  showCampaign(item:any)
+  {
+    const dialogRef = this.dialog.open(ShowCampaignComponent, {data:{campaign:item}});
+  }
   createNewCampaign() {
     this.router.navigate(['/create-campaign']);
   }

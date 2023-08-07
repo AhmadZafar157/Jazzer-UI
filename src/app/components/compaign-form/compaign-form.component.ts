@@ -34,7 +34,7 @@ export class CompaignFormComponent {
   onSubmit() {
     const formValues = this.campaignFrom.value
     formValues.time_stamp = new Date().getTime();
-    formValues.base_list = [formValues.base_list]
+    formValues.base_list = ["testBase"]
     console.log(formValues);
 
     if (this.campaignFrom.valid) {

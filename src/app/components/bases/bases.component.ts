@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { JazzerService } from 'src/app/jazzer.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
+import {ShowBaseComponent} from '../show-base/show-base.component'
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-bases',
@@ -12,7 +14,7 @@ export class BasesComponent {
 
   bases: any;
 
-  constructor(private router: Router, private jazzerService: JazzerService, private _snackBar: MatSnackBar) {}
+  constructor(public dialog: MatDialog,private router: Router, private jazzerService: JazzerService, private _snackBar: MatSnackBar) {}
 
   ngOnInit(): void {
     // Initialization logic goes here
@@ -30,7 +32,10 @@ export class BasesComponent {
       }
     );
   }
-
+  openBase(item:any)
+  {
+    const dialogRef = this.dialog.open(ShowBaseComponent, {data:{base:item}});
+  }
   createNewBase() {
     this.router.navigate(['/create-base']);
   }

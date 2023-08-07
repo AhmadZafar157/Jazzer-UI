@@ -7,7 +7,7 @@
         <span style="width: 20%;">{{item.base_name}}</span>
         <span style="width: 10%;">{{item.count}}</span>
         <span style="width: 30%;">{{item.createdAt}}</span>
-        <mat-chip style="cursor: pointer; background-color: rgb(230, 33, 33);">Details</mat-chip>
+        <mat-chip (click)="openBase(item)" style="cursor: pointer; background-color: rgb(230, 33, 33);">Details</mat-chip>
     </div>
     <br>
 </mat-dialog-content>

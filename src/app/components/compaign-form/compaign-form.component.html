@@ -1,7 +1,7 @@
 <kt-card>
 
 <form [formGroup]="campaignFrom" class="example-form compaign"  (ngSubmit)="onSubmit()">
-    <h1>Create Compaign</h1>
+    <h1>Create Campaign</h1>
 
     <mat-form-field class="input">
         <mat-label>Campaign Title</mat-label>
@@ -38,7 +38,7 @@
       </mat-form-field>
 
       <mat-form-field class="input">
-        <mat-label>Compaign Name</mat-label>
+        <mat-label>Campaign Name</mat-label>
         <mat-select formControlName="campaign_name">
           <mat-option *ngFor="let compaign of compaigns" [value]="compaign.value">
             {{compaign.label}}
