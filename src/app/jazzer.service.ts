@@ -56,16 +56,31 @@ export class JazzerService {
 			this.API_URL + "bases"
 		);
 	}
-
+	public deleteTeam(id:any): Observable<any> {
+		return this.http.delete(
+			this.API_URL + "team/"+id
+		);
+	}
 	public getAllCampaigns(): Observable<any> {
 		return this.http.get(
 			this.API_URL + "campaigns"
+		);
+	}
+	public getAllTeams(): Observable<any> {
+		return this.http.get(
+			this.API_URL + "teams"
 		);
 	}
 
 	public createCampaign(payload: any): Observable<any> {
 		return this.http.post(
 			this.API_URL + `campaign`,
+			payload
+		);
+	}
+	public createTeam(payload: any): Observable<any> {
+		return this.http.post(
+			this.API_URL + `team`,
 			payload
 		);
 	}

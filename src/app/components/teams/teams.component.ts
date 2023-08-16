@@ -7,47 +7,25 @@ import {LiveAnnouncer} from '@angular/cdk/a11y';
 import {AfterViewInit, ViewChild} from '@angular/core';
 import {MatSort, Sort} from '@angular/material/sort';
 import {MatTableDataSource} from '@angular/material/table';
-import { ShowCampaignComponent } from '../show-campaign/show-campaign.component';
+import { ShowTeamComponent } from '../show-team/show-team.component';
 
 @Component({
-  selector: 'app-campaigns',
-  templateUrl: './campaigns.component.html',
-  styleUrls: ['./campaigns.component.scss']
+  selector: 'app-teams',
+  templateUrl: './teams.component.html',
+  styleUrls: ['./teams.component.scss']
 })
-export class CampaignsComponent implements AfterViewInit{
+export class TeamsComponent implements AfterViewInit{
   
-  campaigns: any;
+  teams: any;
   user: any
   @ViewChild(MatSort) sort!: MatSort;
-  displayedColumns: string[] = ['Title', 'Stakeholder','Status' ,'CreationTime', 'Action'];
+  displayedColumns: string[] = ['Team', 'ShortCode', 'Action'];
   dataSource = new MatTableDataSource([]);
   constructor(private _liveAnnouncer: LiveAnnouncer, public dialog: MatDialog, private router: Router, private jazzerService: JazzerService, private _snackBar: MatSnackBar) {}
 
   ngOnInit(): void {
     // Initialization logic goes here
-    this.jazzerService.getAllCampaigns().subscribe(
-      (res) => {
-        if (res.statusCode == 200) {
-          this.campaigns = res.data;
-          const tableData = this.campaigns.map((base: any) => {
-            return {
-              "Title": base.title,
-              "Stakeholder": base.stakeholder,
-              "Status": base.status,
-              "CreationTime": base.createdAt
-            }
-          });
-          console.log(tableData)
-          this.dataSource = new MatTableDataSource(tableData);
-          this.dataSource.sort = this.sort;
-        }
-      },
-      (err) => {
-        this._snackBar.open(err.message, "OK", {
-          duration: 3000
-        });
-      }
-    );
+   this.getTeams();
 
     this.jazzerService.getCurrentUser().subscribe(
       (res) => {
@@ -62,27 +40,21 @@ export class CampaignsComponent implements AfterViewInit{
       }
     );
   }
-  showCampaign(item:any)
-  {
-    const dialogRef = this.dialog.open(ShowCampaignComponent, {data:{campaign:item}});
-  }
-  createNewCampaign() {
-    this.router.navigate(['/create-campaign']);
-  }
-
-  updateCampaign(data: any) {
-    const index = this.campaigns.findIndex((campaign: any) => campaign._id === data._id);
-    this.campaigns[index] = data;
-  }
-
-  execute(campaign: any) {
-
-    console.log(campaign);
-    this.jazzerService.execute(campaign).subscribe(
+  getTeams() {
+    this.jazzerService.getAllTeams().subscribe(
       (res) => {
         if (res.statusCode == 200) {
-          const {data} = res;
-          this.updateCampaign(data)
+          this.teams = res.data;
+          const tableData = this.teams.map((base: any) => {
+            return {
+              "Team": base.name,
+              "ShortCode": base.shortCode,
+              "teamRef": base
+            }
+          });
+          console.log(tableData)
+          this.dataSource = new MatTableDataSource(tableData);
+          this.dataSource.sort = this.sort;
         }
       },
       (err) => {
@@ -92,6 +64,39 @@ export class CampaignsComponent implements AfterViewInit{
       }
     );
   }
+  createNewTeam() {
+    this.router.navigate(['/create-team']);
+  }
+  showTeams(item:any)
+  {
+    const dialogRef = this.dialog.open(ShowTeamComponent, {data:{team:item}});
+  }
+  deleteTeams(team:any)
+  {
+    this.jazzerService.deleteTeam(team.teamRef._id).subscribe(
+      (res) => {
+        if (res.statusCode == 200) {
+          this.getTeams()
+          this._snackBar.open("Team Successfully deleted", "OK", {
+            duration: 3000
+          });
+          console.log(res)
+        }
+      },
+      (err) => {
+        this._snackBar.open(err.message, "OK", {
+          duration: 3000
+        });
+      }
+    );    
+
+  }
+  updateCampaign(data: any) {
+    const index = this.teams.findIndex((campaign: any) => campaign._id === data._id);
+    this.teams[index] = data;
+  }
+
+
   ngAfterViewInit() {
     this.dataSource.sort = this.sort;
   }

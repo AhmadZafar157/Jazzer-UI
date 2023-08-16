@@ -3,6 +3,7 @@ import {MatDialog} from '@angular/material/dialog';
 import { ConnectTdComponent } from '../connect-td/connect-td.component';
 import { BasesComponent } from '../bases/bases.component';
 import { CampaignsComponent } from '../campaigns/campaigns.component';
+import { TeamsComponent } from '../teams/teams.component';
 
 @Component({
   selector: 'app-dashboard',
@@ -33,5 +34,8 @@ export class DashboardComponent {
   goToCampaigns() {
     const dialogRef = this.campaigns.open(CampaignsComponent);
 
+  }
+  goToTeams(){
+    const dialogRef = this.campaigns.open(TeamsComponent);
   }
 }

@@ -1,0 +1,19 @@
+<kt-card>
+
+    <form [formGroup]="teamFrom" class="example-form compaign" (ngSubmit)="onSubmit()">
+        <h1>Create Team</h1>
+
+        <mat-form-field class="input">
+            <mat-label>Team Name</mat-label>
+            <input matInput formControlName="name" placeholder="Team Name" value="">
+        </mat-form-field>
+        <mat-form-field class="input">
+            <mat-label>Short Code</mat-label>
+            <input matInput formControlName="shortCode" placeholder="Short Code" value="">
+        </mat-form-field>
+
+
+        <button mat-raised-button color="primary">Submit</button>
+    </form>
+
+</kt-card>

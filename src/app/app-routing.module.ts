@@ -5,6 +5,7 @@ import { LoginComponent } from './components/login/login.component';
 import { BaseFormComponent } from './components/base-form/base-form.component';
 import { CompaignFormComponent } from './components/compaign-form/compaign-form.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
+import { TeamFormComponent } from './components/team-form/team-form.component';
 
 const routes: Routes = [
   {
@@ -42,6 +43,12 @@ const routes: Routes = [
         component: CompaignFormComponent
       
         },
+        { 
+
+          path: "create-team",
+          component: TeamFormComponent
+        
+          },
     { path: "**", redirectTo: "login", pathMatch: "full" },
 ];
 

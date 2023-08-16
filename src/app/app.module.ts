@@ -31,6 +31,11 @@ import { BasesComponent } from './components/bases/bases.component';
 import { CampaignsComponent } from './components/campaigns/campaigns.component';
 import { ShowBaseComponent } from './components/show-base/show-base.component';
 import { ShowCampaignComponent } from './components/show-campaign/show-campaign.component';
+import {MatSortModule} from '@angular/material/sort';
+import {MatTableModule} from '@angular/material/table';
+import { TeamsComponent } from './components/teams/teams.component';
+import { TeamFormComponent } from './components/team-form/team-form.component';
+import { ShowTeamComponent } from './components/show-team/show-team.component';
 
 @NgModule({
   declarations: [
@@ -45,7 +50,10 @@ import { ShowCampaignComponent } from './components/show-campaign/show-campaign.
     BasesComponent,
     CampaignsComponent,
     ShowBaseComponent,
-    ShowCampaignComponent
+    ShowCampaignComponent,
+    TeamsComponent,
+    TeamFormComponent,
+    ShowTeamComponent
   ],
   imports: [
     BrowserModule,
@@ -66,7 +74,9 @@ import { ShowCampaignComponent } from './components/show-campaign/show-campaign.
     MatIconModule,
     MatToolbarModule,
     MatDialogModule,
-    MatChipsModule
+    MatChipsModule,
+    MatTableModule,
+    MatSortModule
   ],
   providers: [{
     provide: HTTP_INTERCEPTORS,
