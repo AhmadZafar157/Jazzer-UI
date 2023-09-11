@@ -1,127 +1,141 @@
 <kt-card>
-<form [formGroup]="baseForm" class="example-form base" (ngSubmit)="onSubmit()">
-    <h1 style="width: 100%; text-align: center;">Create Base</h1>
+  <form [formGroup]="baseForm" class="example-form base" [ngClass]="{reduced: formType == 'reduced'}" (ngSubmit)="onSubmit()">
+    <h1 style="width: 100%; text-align: center;">Create Segment</h1>
 
     <mat-form-field class="input">
-        <mat-label>Base Name</mat-label>
-        <input type="text" formControlName="base_name" matInput placeholder="Base Name" value="">
+      <mat-label>Segment Name</mat-label>
+      <input type="text" formControlName="base_name" matInput placeholder="Base Name">
     </mat-form-field>
 
     <mat-form-field class="input">
-        <mat-label>Cities</mat-label>
-        <mat-select formControlName="max_stay_city"  multiple>
-          <mat-option *ngFor="let city of citiesList" [value]="city">{{city}}</mat-option>
-        </mat-select>
+      <mat-label>Description</mat-label>
+      <input type="text" formControlName="description" matInput placeholder="Description">
     </mat-form-field>
 
-    <mat-form-field class="input">
+    <mat-form-field class="input" *ngIf="formType == 'reduced'">
+      <mat-label>Table Name</mat-label>
+      <input type="text" formControlName="table_name" matInput placeholder="Table Name">
+    </mat-form-field>
+
+    <mat-form-field class="input" *ngIf="formType == 'default'">
+      <mat-label>Cities</mat-label>
+      <mat-select formControlName="max_stay_city" multiple>
+        <mat-option *ngFor="let city of citiesList" [value]="city">{{city}}</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <!-- <mat-form-field class="input" *ngIf="formType == 'default'">
         <mat-label>Regions</mat-label>
         <mat-select formControlName="regions" multiple>
           <mat-option *ngFor="let region of regionsList" [value]="region">{{region}}</mat-option>
         </mat-select>
+    </mat-form-field> -->
+
+    <mat-form-field class="input" *ngIf="formType == 'default'">
+      <mat-label>Min Revenue</mat-label>
+      <input formControlName="minRev" type="number" matInput placeholder="0">
     </mat-form-field>
 
-    <mat-form-field class="input">
-        <mat-label>Min Revenue</mat-label>
-        <input formControlName="minRev" type="number" matInput placeholder="0" value="">
-      </mat-form-field>
-
-    <mat-form-field class="input">
+    <mat-form-field class="input" *ngIf="formType == 'default'">
       <mat-label>Max Revenue</mat-label>
-      <input formControlName="maxRev" type="number" matInput placeholder="0" value="">
+      <input formControlName="maxRev" type="number" matInput placeholder="0">
     </mat-form-field>
 
-    <mat-form-field class="input">
-        <mat-label>Min Recharge</mat-label>
-        <input formControlName="minRech" type="number" matInput placeholder="0" value="">
-      </mat-form-field>
+    <mat-form-field class="input" *ngIf="formType == 'default'">
+      <mat-label>Min Recharge</mat-label>
+      <input formControlName="minRech" type="number" matInput placeholder="0">
+    </mat-form-field>
 
-    <mat-form-field class="input">
+    <mat-form-field class="input" *ngIf="formType == 'default'">
       <mat-label>Max Recharge</mat-label>
-      <input formControlName="maxRech" type="number" matInput placeholder="0" value="">
+      <input formControlName="maxRech" type="number" matInput placeholder="0">
     </mat-form-field>
 
-    <mat-form-field class="input">
-        <mat-label>Min Balance</mat-label>
-        <input formControlName="minBal" type="number" matInput placeholder="0" value="">
-      </mat-form-field>
+    <mat-form-field class="input" *ngIf="formType == 'default'">
+      <mat-label>Min Balance</mat-label>
+      <input formControlName="minBal" type="number" matInput placeholder="0">
+    </mat-form-field>
 
-    <mat-form-field class="input">
+    <mat-form-field class="input" *ngIf="formType == 'default'">
       <mat-label>Max Balance</mat-label>
-      <input formControlName="maxBal" type="number" matInput placeholder="0" value="">
+      <input formControlName="maxBal" type="number" matInput placeholder="0">
     </mat-form-field>
 
-    <mat-form-field class="input">
-        <mat-label>Min Recharge Dormancy</mat-label>
-        <input formControlName="minDor" type="number" matInput placeholder="0" value="">
-      </mat-form-field>
-
-    <mat-form-field class="input">
-      <mat-label>Max Recharge Dormancy</mat-label>
-      <input formControlName="maxDor" type="number" matInput placeholder="0" value="">
+    <mat-form-field class="input" *ngIf="formType == 'default'">
+      <mat-label>Min Dormancy</mat-label>
+      <input formControlName="minDor" type="number" matInput placeholder="0">
     </mat-form-field>
 
-    <mat-form-field class="input">
+    <mat-form-field class="input" *ngIf="formType == 'default'">
+      <mat-label>Max Dormancy</mat-label>
+      <input formControlName="maxDor" type="number" matInput placeholder="0">
+    </mat-form-field>
+
+    <!-- <mat-form-field class="input" *ngIf="formType == 'default'">
         <mat-label>Favourite Data Product</mat-label>
         <mat-select formControlName="dataProducts" multiple>
           <mat-option *ngFor="let dataProduct of dataProductsList" [value]="dataProduct">{{dataProduct}}</mat-option>
         </mat-select>
     </mat-form-field>
 
-    <mat-form-field class="input">
+    <mat-form-field class="input" *ngIf="formType == 'default'">
         <mat-label>Favourite Hybrid Product</mat-label>
         <mat-select formControlName="hybridProducts" multiple>
           <mat-option *ngFor="let hybridProduct of hybridProductsList" [value]="hybridProduct">{{hybridProduct}}</mat-option>
         </mat-select>
-    </mat-form-field>
+    </mat-form-field> -->
 
-    <mat-form-field class="input">
+    <!-- <mat-form-field class="input" *ngIf="formType == 'default'">
         <mat-label>Favourite Data Product</mat-label>
         <mat-select formControlName="voiceProducts" multiple>
           <mat-option *ngFor="let voiceProduct of voiceProductsList" [value]="voiceProduct">{{voiceProduct}}</mat-option>
         </mat-select>
     </mat-form-field>
 
-    <mat-form-field class="input">
+    <mat-form-field class="input" *ngIf="formType == 'default'">
         <mat-label>Min 2G Dormancy</mat-label>
-        <input formControlName="min2gDor" type="number" matInput placeholder="0" value="">
+        <input formControlName="min2gDor" type="number" matInput placeholder="0"  >
       </mat-form-field>
 
-    <mat-form-field class="input">
+    <mat-form-field class="input" *ngIf="formType == 'default'">
       <mat-label>Max 2G Dormancy</mat-label>
-      <input formControlName="max2gDor" type="number" matInput placeholder="0" value="">
-    </mat-form-field>
+      <input formControlName="max2gDor" type="number" matInput placeholder="0"  >
+    </mat-form-field> -->
 
-    <mat-form-field class="input">
+    <!-- <mat-form-field class="input" *ngIf="formType == 'default'">
         <mat-label>Min 3G Dormancy</mat-label>
-        <input formControlName="min3gDor" type="number" matInput placeholder="0" value="">
+        <input formControlName="min3gDor" type="number" matInput placeholder="0"  >
       </mat-form-field>
 
-    <mat-form-field class="input">
+    <mat-form-field class="input" *ngIf="formType == 'default'">
       <mat-label>Max 3G Dormancy</mat-label>
-      <input formControlName="max3gDor" type="number" matInput placeholder="0" value="">
+      <input formControlName="max3gDor" type="number" matInput placeholder="0"  >
+    </mat-form-field> -->
+
+    <mat-form-field class="input" *ngIf="formType == 'default'">
+      <mat-label>Min 4G Dormancy</mat-label>
+      <input formControlName="min4gDor" type="number" matInput placeholder="0">
     </mat-form-field>
 
-    <mat-form-field class="input">
-        <mat-label>Min 4G Dormancy</mat-label>
-        <input formControlName="min4gDor" type="number" matInput placeholder="0" value="">
-      </mat-form-field>
-
-    <mat-form-field class="input">
+    <mat-form-field class="input" *ngIf="formType == 'default'">
       <mat-label>Max 4G Dormancy</mat-label>
-      <input formControlName="max4gDor" type="number" matInput placeholder="0" value="">
+      <input formControlName="max4gDor" type="number" matInput placeholder="0">
     </mat-form-field>
 
+    <mat-form-field class="input" *ngIf="formType == 'default'">
+      <mat-label>SIM Type</mat-label>
+      <mat-select formControlName="simType">
+        <mat-option *ngFor="let paid of paids" [value]="paid.value">
+          {{paid.label}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
     <mat-form-field class="input">
-        <mat-label>SIM Type</mat-label>
-        <mat-select formControlName="simType">
-          <mat-option *ngFor="let paid of paids" [value]="paid.value">
-            {{paid.label}}
-          </mat-option>
-        </mat-select>
-      </mat-form-field>
-      <br>
+      <mat-label>Capping</mat-label>
+      <input type="number" min="0" formControlName="capping" matInput placeholder="Capping">
+    </mat-form-field>
+    <br>
 
-    <button type="submit" style="width: 70%; height: 50px;" mat-raised-button color="primary">Lock Base</button>
-</form>
+    <button type="submit" style="width: 60%; height: 50px; color: white; background-color: black;" mat-raised-button color="primary">Lock Segment</button>
+  </form>
 </kt-card>

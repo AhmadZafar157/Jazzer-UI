@@ -1,13 +1,69 @@
 <div class="head">
-    <span mat-dialog-title>All Bases</span>
-<button mat-button cdkFocusInitial [mat-dialog-close]="true" (click)="createNewBase()">Create New</button>
+    <h1 mat-dialog-title>Segments</h1>
+    <button style="background-color: black; color: white; width: 150px;" mat-button cdkFocusInitial [mat-dialog-close]="true" (click)="createNewBase()">Create New</button>
 </div>
 <mat-dialog-content class="mat-typography">
-    <div class="bases" *ngFor="let item of bases">
-        <span style="width: 20%;">{{item.base_name}}</span>
-        <span style="width: 10%;">{{item.count}}</span>
-        <span style="width: 30%;">{{item.createdAt}}</span>
-        <mat-chip (click)="openBase(item)" style="cursor: pointer; background-color: rgb(230, 33, 33);">Details</mat-chip>
-    </div>
-    <br>
+
+    <table mat-table [dataSource]="dataSource" matSort (matSortChange)="announceSortChange($event)"
+        class="mat-elevation-z8" style="width: 1000px;">
+
+        <!-- Position Column -->
+        <ng-container matColumnDef="BaseName">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                Base Name
+            </th>
+            <td mat-cell *matCellDef="let element"> {{element.BaseName}} </td>
+        </ng-container>
+
+        <!-- Name Column -->
+        <ng-container matColumnDef="Count">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                Count
+            </th>
+            <td mat-cell *matCellDef="let element"> {{element.Count}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="Cap">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                Cap
+            </th>
+            <td mat-cell *matCellDef="let element"> {{element.Cap}} </td>
+        </ng-container>
+        <ng-container matColumnDef="ExecutionPotential">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                Execution Potential
+            </th>
+            <td mat-cell *matCellDef="let element"> {{element.ExecutionPotential}} </td>
+        </ng-container>
+        <!-- Weight Column -->
+        <ng-container matColumnDef="CreationTime">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                Creation Time
+            </th>
+            <td mat-cell *matCellDef="let element"> {{element.CreationTime}} </td>
+        </ng-container>
+
+        <!-- Action Column -->
+        <ng-container matColumnDef="Action">
+            <th mat-header-cell *matHeaderCellDef>
+                Action
+            </th>
+            <td mat-cell *matCellDef="let element">
+                <!-- {{element.CreationTime}} -->
+                <mat-chip (click)="openBase(element)"
+                    style="cursor: pointer; background-color: rgb(230, 33, 33);">Details</mat-chip>
+            </td>
+        </ng-container>
+
+
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+
+    </table>
+
+    <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons aria-label="Select page of periodic elements">
+    </mat-paginator>
+
 </mat-dialog-content>

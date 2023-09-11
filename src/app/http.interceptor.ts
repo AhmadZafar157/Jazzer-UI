@@ -6,16 +6,18 @@ import {
 	HttpRequest,
 	HttpResponse,
 } from "@angular/common/http";
-import {MatSnackBar} from '@angular/material/snack-bar';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from "@angular/router";
 import { catchError, tap } from "rxjs/operators";
+import { JazzerService } from "./jazzer.service";
 
 @Injectable()
 export class MyHttpInterceptor implements HttpInterceptor {
 
 	constructor(
 		private router: Router,
-		private _snackBar: MatSnackBar
+		private _snackBar: MatSnackBar,
+		private jazzerService: JazzerService
 	) { }
 
 	intercept(
@@ -30,6 +32,9 @@ export class MyHttpInterceptor implements HttpInterceptor {
 					Authorization: `Bearer ${access_token}`,
 				},
 			});
+
+			this.jazzerService.loader.next(true);
+
 		} else {
 			this._snackBar.open("Invalid or expired token, Please login again!", "", {
 				duration: 3000
@@ -40,23 +45,33 @@ export class MyHttpInterceptor implements HttpInterceptor {
 		return next.handle(request).pipe(
 			tap((event: HttpEvent<any>) => {
 				if (event instanceof HttpResponse) {
-				  // Handle successful response
-				  const {body} = event;
-				  console.log(body);
-				  if (body.statusCode == 200) {
-					this._snackBar.open(body.message, "", {
-						duration: 3000
-					  });
-				  } else {
-					console.log(body.error);
-					this._snackBar.open(body.message, "", {
-						duration: 3000
-					});
-				  }
+					this.jazzerService.loader.next(false);
+					// Handle successful response
+					const { body } = event;
+
+					if (body.statusCode == 200) {
+						this._snackBar.open(body.message, "", {
+							duration: 3000
+						});
+					} else {
+						this._snackBar.open(body.message, "", {
+							duration: 3000
+						});
+					}
 				}
 			}),
 			catchError<any, any>((err) => {
-				console.log(err.message);
+				console.log(err);
+
+				this.jazzerService.loader.next(false);
+
+				// token expired or removed
+				if (err.status == 401) {
+					localStorage.removeItem('token');
+					localStorage.removeItem('user');
+					this.router.navigate(['/login']);
+				}
+
 				this._snackBar.open("Something went wrong while making API call!", "", {
 					duration: 3000
 				});

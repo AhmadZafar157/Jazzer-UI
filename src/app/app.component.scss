@@ -1,0 +1,22 @@
+.model {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 2000;
+    background-color: black;
+    opacity: 0.3;
+}
+
+.loader {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 2001;
+}

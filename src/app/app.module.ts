@@ -31,6 +31,15 @@ import { BasesComponent } from './components/bases/bases.component';
 import { CampaignsComponent } from './components/campaigns/campaigns.component';
 import { ShowBaseComponent } from './components/show-base/show-base.component';
 import { ShowCampaignComponent } from './components/show-campaign/show-campaign.component';
+import {MatSortModule} from '@angular/material/sort';
+import {MatTableModule} from '@angular/material/table';
+import { TeamsComponent } from './components/teams/teams.component';
+import { TeamFormComponent } from './components/team-form/team-form.component';
+import { ShowTeamComponent } from './components/show-team/show-team.component';
+import {MatSidenavModule} from '@angular/material/sidenav';
+import {MatPaginatorModule} from '@angular/material/paginator';
+import {MatListModule} from '@angular/material/list';
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 
 @NgModule({
   declarations: [
@@ -45,16 +54,21 @@ import { ShowCampaignComponent } from './components/show-campaign/show-campaign.
     BasesComponent,
     CampaignsComponent,
     ShowBaseComponent,
-    ShowCampaignComponent
+    ShowCampaignComponent,
+    TeamsComponent,
+    TeamFormComponent,
+    ShowTeamComponent
   ],
   imports: [
     BrowserModule,
+    MatProgressSpinnerModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     MatButtonModule,
     MatCardModule,
     MatInputModule,
     MatFormFieldModule,
+    MatListModule,
     FormsModule,
     MatButtonToggleModule,
     ReactiveFormsModule,
@@ -66,7 +80,11 @@ import { ShowCampaignComponent } from './components/show-campaign/show-campaign.
     MatIconModule,
     MatToolbarModule,
     MatDialogModule,
-    MatChipsModule
+    MatChipsModule,
+    MatTableModule,
+    MatSortModule,
+    MatSidenavModule,
+    MatPaginatorModule
   ],
   providers: [{
     provide: HTTP_INTERCEPTORS,
