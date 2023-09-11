@@ -1,6 +1,6 @@
 <div class="head">
-    <span mat-dialog-title>All Campaigns</span>
-    <button mat-button cdkFocusInitial [mat-dialog-close]="true" (click)="createNewCampaign()">Create New</button>
+    <h1 mat-dialog-title>All Campaigns</h1>
+    <button style="background-color: black; color: white; width: 150px;" mat-button cdkFocusInitial [mat-dialog-close]="true" (click)="createNewCampaign()">Create New</button>
 </div>
 <!-- <mat-dialog-content class="mat-typography">
     <div class="campaigns" *ngFor="let item of campaigns">
@@ -59,11 +59,11 @@
                 <mat-chip (click)="showCampaign(element)"
                     style="cursor: pointer; background-color: rgb(230, 33, 33); margin-right: 10px;">Details</mat-chip>
 
-                <mat-chip *ngIf="user.user_type == 'cvm_type'"
+                <mat-chip *ngIf="user.user_type == 'cvm_type' || user.user_type == 'super_admin'"
                     [disabled]="element.Status == 'Executed' || element.Status == 'Existing'"
                     style="cursor: pointer; background-color: rgb(109, 103, 239);"
                     (click)="execute(element)">Execute</mat-chip>
-                <mat-chip *ngIf="user.user_type == 'non_cvm_type'"
+                <mat-chip *ngIf="user.user_type == 'non_cvm_type' && element.Status == 'Existing'" (click)="parkRequest(element)"
                     style="cursor: pointer; background-color: rgb(109, 103, 239);">Park Request</mat-chip>
             </td>
         </ng-container>
@@ -71,5 +71,6 @@
         <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
         <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
     </table>
-
+    <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons aria-label="Select page of periodic elements">
+    </mat-paginator>
 </mat-dialog-content>

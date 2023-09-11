@@ -36,6 +36,10 @@ import {MatTableModule} from '@angular/material/table';
 import { TeamsComponent } from './components/teams/teams.component';
 import { TeamFormComponent } from './components/team-form/team-form.component';
 import { ShowTeamComponent } from './components/show-team/show-team.component';
+import {MatSidenavModule} from '@angular/material/sidenav';
+import {MatPaginatorModule} from '@angular/material/paginator';
+import {MatListModule} from '@angular/material/list';
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 
 @NgModule({
   declarations: [
@@ -57,12 +61,14 @@ import { ShowTeamComponent } from './components/show-team/show-team.component';
   ],
   imports: [
     BrowserModule,
+    MatProgressSpinnerModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     MatButtonModule,
     MatCardModule,
     MatInputModule,
     MatFormFieldModule,
+    MatListModule,
     FormsModule,
     MatButtonToggleModule,
     ReactiveFormsModule,
@@ -76,7 +82,9 @@ import { ShowTeamComponent } from './components/show-team/show-team.component';
     MatDialogModule,
     MatChipsModule,
     MatTableModule,
-    MatSortModule
+    MatSortModule,
+    MatSidenavModule,
+    MatPaginatorModule
   ],
   providers: [{
     provide: HTTP_INTERCEPTORS,

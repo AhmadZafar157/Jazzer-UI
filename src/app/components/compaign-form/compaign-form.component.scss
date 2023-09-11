@@ -1,9 +1,14 @@
 .compaign {
     display: flex;
     align-items: center;
-    flex-direction: column;
+    justify-content: center;
+    // flex-direction: column;
+    width: 900px;
+    max-height: 80vh;
+    flex-wrap: wrap;
 }
 
 .input {
     width: 400px;
+    margin: 10px;
 }

@@ -8,6 +8,8 @@ import {AfterViewInit, ViewChild} from '@angular/core';
 import {MatSort, Sort} from '@angular/material/sort';
 import {MatTableDataSource} from '@angular/material/table';
 import { ShowTeamComponent } from '../show-team/show-team.component';
+import { MatPaginator } from '@angular/material/paginator';
+import { TeamFormComponent } from '../team-form/team-form.component';
 
 @Component({
   selector: 'app-teams',
@@ -19,6 +21,7 @@ export class TeamsComponent implements AfterViewInit{
   teams: any;
   user: any
   @ViewChild(MatSort) sort!: MatSort;
+  @ViewChild(MatPaginator) paginator!: MatPaginator;
   displayedColumns: string[] = ['Team', 'ShortCode', 'Action'];
   dataSource = new MatTableDataSource([]);
   constructor(private _liveAnnouncer: LiveAnnouncer, public dialog: MatDialog, private router: Router, private jazzerService: JazzerService, private _snackBar: MatSnackBar) {}
@@ -45,6 +48,7 @@ export class TeamsComponent implements AfterViewInit{
       (res) => {
         if (res.statusCode == 200) {
           this.teams = res.data;
+          console.log(this.teams);
           const tableData = this.teams.map((base: any) => {
             return {
               "Team": base.name,
@@ -54,6 +58,7 @@ export class TeamsComponent implements AfterViewInit{
           });
           console.log(tableData)
           this.dataSource = new MatTableDataSource(tableData);
+          this.dataSource.paginator = this.paginator;
           this.dataSource.sort = this.sort;
         }
       },
@@ -65,11 +70,11 @@ export class TeamsComponent implements AfterViewInit{
     );
   }
   createNewTeam() {
-    this.router.navigate(['/create-team']);
+    this.dialog.open(TeamFormComponent);
   }
   showTeams(item:any)
   {
-    const dialogRef = this.dialog.open(ShowTeamComponent, {data:{team:item}});
+    this.dialog.open(ShowTeamComponent, {data:{team:item}});
   }
   deleteTeams(team:any)
   {
@@ -99,6 +104,7 @@ export class TeamsComponent implements AfterViewInit{
 
   ngAfterViewInit() {
     this.dataSource.sort = this.sort;
+    this.dataSource.paginator = this.paginator;
   }
 
   /** Announce the change in sort state for assistive technology. */

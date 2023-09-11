@@ -24,10 +24,12 @@ export class LoginComponent {
         (res) => {
           if (res.statusCode == 200) {
             localStorage.setItem('token', res.data.token);
+            localStorage.setItem('user', this.jazzerService.encrypt(res.data));
             this.router.navigate(['/dashboard']);
           }
         }
       );
     }
+
   }
 }

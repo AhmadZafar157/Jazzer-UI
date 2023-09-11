@@ -9,47 +9,47 @@ import { TeamFormComponent } from './components/team-form/team-form.component';
 
 const routes: Routes = [
   {
-		path: "",
-		redirectTo: "login",
-		pathMatch: "full",
-	},
- { 
-
-  path: "signup",
-	component: SignupComponent
-
+    path: "",
+    redirectTo: "login",
+    pathMatch: "full",
   },
-  { 
+  //  { 
+
+  //   path: "signup",
+  // 	component: SignupComponent
+
+  //   },
+  {
 
     path: "login",
     component: LoginComponent
-  
-    },
-    { 
 
-      path: "dashboard",
-      component: DashboardComponent
-    
-      },
-    { 
+  },
+  {
 
-      path: "create-base",
-      component: BaseFormComponent
-    
-      },
-      { 
+    path: "dashboard",
+    component: DashboardComponent
 
-        path: "create-campaign",
-        component: CompaignFormComponent
-      
-        },
-        { 
+  },
+  // { 
 
-          path: "create-team",
-          component: TeamFormComponent
-        
-          },
-    { path: "**", redirectTo: "login", pathMatch: "full" },
+  //   path: "create-base",
+  //   component: BaseFormComponent
+
+  //   },
+  //   { 
+
+  //     path: "create-campaign",
+  //     component: CompaignFormComponent
+
+  //     },
+  //     { 
+
+  //       path: "create-team",
+  //       component: TeamFormComponent
+
+  //       },
+  { path: "**", redirectTo: "login", pathMatch: "full" },
 ];
 
 @NgModule({

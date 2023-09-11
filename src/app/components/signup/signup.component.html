@@ -1,6 +1,6 @@
 <kt-card>
     <form [formGroup]="signupForm" class="example-form" class="signUp" (ngSubmit)="onSubmit()">
-        <h1>Sign Up</h1>
+        <h1>User Onboarding</h1>
         <mat-form-field class="input">
             <mat-label>Full Name</mat-label>
             <input formControlName="name" matInput placeholder="Full Name" value="">
@@ -17,13 +17,15 @@
         </mat-form-field>
     
         <mat-form-field class="input">
-            <mat-label>Confirm Password</mat-label>
-            <input formControlName="confirmPassword" type="password" matInput placeholder="Password" value="">
+            <mat-label>Team</mat-label>
+            <mat-select formControlName="team"  multiple>
+              <mat-option *ngFor="let team of teams" [value]="team._id">{{team.shortCode}}</mat-option>
+            </mat-select>
         </mat-form-field>
     
         <mat-button-toggle-group formControlName="user_type" name="userType" aria-label="User Type">
-            <mat-button-toggle value="cvm_type">CVM</mat-button-toggle>
-            <mat-button-toggle value="non_cvm_type">NON CVM</mat-button-toggle>
+            <mat-button-toggle value="cvm_type">Admin</mat-button-toggle>
+            <mat-button-toggle value="non_cvm_type">Team Member</mat-button-toggle>
         </mat-button-toggle-group>
         <br>
       

@@ -1,9 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import {MatDialog} from '@angular/material/dialog';
-import { ConnectTdComponent } from '../connect-td/connect-td.component';
-import { BasesComponent } from '../bases/bases.component';
-import { CampaignsComponent } from '../campaigns/campaigns.component';
-import { TeamsComponent } from '../teams/teams.component';
+import { JazzerService } from '../../jazzer.service';
+import { SignupComponent } from '../signup/signup.component';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-dashboard',
@@ -11,31 +10,54 @@ import { TeamsComponent } from '../teams/teams.component';
   styleUrls: ['./dashboard.component.scss']
 })
 
-export class DashboardComponent {
+export class DashboardComponent implements OnInit{
 
-  screen: any = null;
-
-  constructor(public dialog: MatDialog, public bases: MatDialog, public campaigns: MatDialog) {
-    this.screen = {
-      default: true,
-      bases: false,
-      campaigns: false
+  tabs: any;
+  currentTab: number=1;
+  user:any=null;
+  isNonCVM: boolean=false;
+  
+  constructor(private router: Router,private jazzerService: JazzerService,public dialog: MatDialog) {
+    this.currentTab = 1;
+  }
+  openComponent(currentTab:number){
+    this.currentTab=currentTab;
+  }
+  ngOnInit(): void {
+    this.user= this.jazzerService.decrypt(localStorage.getItem('user'));
+    console.log(this.user)
+    if(this.user.user_type=='non_cvm_type')
+    {
+      this.isNonCVM=true;
     }
   }
 
-  openDialog() {
-    const dialogRef = this.dialog.open(ConnectTdComponent);
+  getSelectedTab() {
+    return this.tabs[this.currentTab].component;
   }
 
-  goToBases() {
-      const dialogRef = this.bases.open(BasesComponent);
+  signoutUser() {
+    localStorage.removeItem('token');
+    localStorage.removeItem('user');
+    this.router.navigate(['/login']);
   }
 
-  goToCampaigns() {
-    const dialogRef = this.campaigns.open(CampaignsComponent);
+  // openDialog() {
+  //   const dialogRef = this.dialog.open(ConnectTdComponent);
+  // }
 
-  }
-  goToTeams(){
-    const dialogRef = this.campaigns.open(TeamsComponent);
+  // goToBases() {
+  //     const dialogRef = this.dialog.open(BasesComponent);
+  // }
+
+  // goToCampaigns() {
+  //   const dialogRef = this.dialog.open(CampaignsComponent);
+
+  // }
+  // goToTeams(){
+  //   const dialogRef = this.dialog.open(TeamsComponent);
+  // }
+  goToUserCreation(){
+    const dialogRef = this.dialog.open(SignupComponent);
   }
 }

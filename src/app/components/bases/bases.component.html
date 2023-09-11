@@ -1,6 +1,6 @@
 <div class="head">
-    <span mat-dialog-title>All Bases</span>
-    <button mat-button cdkFocusInitial [mat-dialog-close]="true" (click)="createNewBase()">Create New</button>
+    <h1 mat-dialog-title>Segments</h1>
+    <button style="background-color: black; color: white; width: 150px;" mat-button cdkFocusInitial [mat-dialog-close]="true" (click)="createNewBase()">Create New</button>
 </div>
 <mat-dialog-content class="mat-typography">
 
@@ -23,6 +23,18 @@
             <td mat-cell *matCellDef="let element"> {{element.Count}} </td>
         </ng-container>
 
+        <ng-container matColumnDef="Cap">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                Cap
+            </th>
+            <td mat-cell *matCellDef="let element"> {{element.Cap}} </td>
+        </ng-container>
+        <ng-container matColumnDef="ExecutionPotential">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                Execution Potential
+            </th>
+            <td mat-cell *matCellDef="let element"> {{element.ExecutionPotential}} </td>
+        </ng-container>
         <!-- Weight Column -->
         <ng-container matColumnDef="CreationTime">
             <th mat-header-cell *matHeaderCellDef mat-sort-header>
@@ -43,8 +55,15 @@
             </td>
         </ng-container>
 
+
+
         <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
         <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+
     </table>
+
+    <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons aria-label="Select page of periodic elements">
+    </mat-paginator>
 
 </mat-dialog-content>
