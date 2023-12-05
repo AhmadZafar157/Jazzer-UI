@@ -1,14 +1,35 @@
-.bases{
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    width: 800px;
-    height: 70px;
-}
-
-.head{
+.detail-container-head {
     display: flex;
     align-items: center;
     justify-content: space-between;
     padding: 20px;
+    background-color: black;
+    color: white;
+}
+
+.detail-container-body-items {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.detail-container-body-item {
+    width: 800px;
+    margin-bottom: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.label {
+    width: 30%;
+    font-weight: bold;
+
+}
+
+.value {
+    width: 70%;
+    text-align: end;
 }

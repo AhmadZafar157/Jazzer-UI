@@ -1,13 +1,26 @@
-<div class="head">
-    <span mat-dialog-title> {{currentTeam.name}}</span>
-</div>
-<mat-dialog-content class="mat-typography">
-    <div class="bases" *ngFor="let item of objectToArray(currentTeam)">
-        <span *ngIf="item.value!=null"> {{ item.key }}: {{ item.value }}</span><br>
-        <!-- <span *ngIf="item.count" style="width: 10%;">{{item.count}}</span>
-        <span *ngIf="item.createdAt" style="width: 30%;">{{item.createdAt}}</span> -->
-
-        <!-- <mat-chip (click)="openBase(item)" style="cursor: pointer; background-color: rgb(230, 33, 33);">Details</mat-chip> -->
+<div>
+    <div mat-dialog-title class="detail-container-head">
+        <span class="label">TEAM NAME</span>
+        <span class="value">{{currentTeam.name}}</span>
     </div>
-    <br>
-</mat-dialog-content>
+    <mat-dialog-content class="mat-typography">
+        <div class="detail-container-body-items">
+            <div class="detail-container-body-item">
+                <span class="label">SHORT CODE</span>
+                <span class="value">{{currentTeam.shortCode}}</span>
+            </div>
+            <div class="detail-container-body-item">
+                <span class="label">DAILY CAPACITY</span>
+                <span class="value">{{currentTeam.capacity}}</span>
+            </div>
+            <div class="detail-container-body-item">
+                <span class="label">REMAINING CAPACITY</span>
+                <span class="value">{{currentTeam.remainingCapacity}}</span>
+            </div>
+            <div class="detail-container-body-item">
+                <span class="label">TEAM CREATION DATE</span>
+                <span class="value">{{currentTeam.createdAt}}</span>
+            </div>
+        </div>
+    </mat-dialog-content>
+</div>

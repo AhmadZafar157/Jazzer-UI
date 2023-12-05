@@ -9,7 +9,6 @@ import { HttpClient } from "@angular/common/http";
 })
 export class JazzerService {
 	
-	baseFormType: string = "default";
 	private API_URL = "http://localhost:3000/";
 	private secret = 'ahmadzafar55'
 	loader = new BehaviorSubject<Boolean>(false);
@@ -25,13 +24,6 @@ export class JazzerService {
 
 	encrypt(password: any) {
 		return CryptoJS.AES.encrypt(JSON.stringify(password), this.secret).toString();
-	}
-
-	openBaseForm(formType: string) {
-		this.baseFormType = formType;
-	}
-	getBaseForm() {
-		return this.baseFormType
 	}
 
 	getTeamById(team_id: any): Observable<any> {
@@ -88,6 +80,11 @@ export class JazzerService {
 	public getAllBases(): Observable<any> {
 		return this.http.get(
 			this.API_URL + "bases"
+		);
+	}
+	public getSegmentsConfig(): Observable<any> {
+		return this.http.get(
+			this.API_URL + "get-all-segment-configs"
 		);
 	}
 	public deleteTeam(id: any): Observable<any> {

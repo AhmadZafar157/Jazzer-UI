@@ -6,15 +6,10 @@ import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
   styleUrls: ['./show-team.component.scss']
 })
 export class ShowTeamComponent {
-  currentTeam:any
+  currentTeam: any
   constructor(private dialogRef: MatDialogRef<ShowTeamComponent>, @Optional() @Inject(MAT_DIALOG_DATA) public data: any) { }
   ngOnInit(): void {
-    console.log(this.data.team)
-    this.currentTeam=this.data.team;
+    this.currentTeam = this.data.team.teamRef;
+    console.log(this.currentTeam);
   }
-  objectToArray(obj: any): { key: string, value: any }[] {
-    return Object.keys(obj).map(key => ({ key, value: obj[key] }));
-  }
-  
-
 }

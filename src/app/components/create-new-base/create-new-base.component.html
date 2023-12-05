@@ -1,0 +1,330 @@
+<div class="remainingCapacity">
+  <button style="background-color: black; color: white; width: 250px; margin: 10px;" mat-button cdkFocusInitial
+            [mat-dialog-close]="true" disabled="true">Remaining Capacity: {{user.team.remainingCapacity}}</button>
+</div>
+<form [formGroup]="createBaseFrom" class="example-form compaign">
+  <mat-accordion class="example-headers-align">
+    <mat-expansion-panel [expanded]="step === 0" (opened)="setStep(0)" hideToggle>
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          SEGMENT INFO
+        </mat-panel-title>
+        <mat-panel-description>
+          Segment Details
+        </mat-panel-description>
+      </mat-expansion-panel-header>
+      <mat-form-field class="input">
+        <mat-label>Segment Name</mat-label>
+        <input matInput type="text" formControlName="base_name" />
+      </mat-form-field>
+      <mat-form-field class="input">
+        <mat-label>Segment Description</mat-label>
+        <input matInput type="text" formControlName="description" />
+      </mat-form-field>
+      <mat-form-field class="input">
+        <mat-label>Capping</mat-label>
+        <input matInput type="number" formControlName="capping" min="0" />
+      </mat-form-field>
+
+
+      <mat-action-row>
+        <button mat-button color="primary" (click)="nextStep()">Next</button>
+      </mat-action-row>
+    </mat-expansion-panel>
+    <mat-expansion-panel [expanded]="step === 1" (opened)="setStep(1)" hideToggle>
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          GENERAL
+        </mat-panel-title>
+        <mat-panel-description>
+          General profiling filters
+        </mat-panel-description>
+      </mat-expansion-panel-header>
+      <mat-form-field class="input">
+        <mat-label>Value Segment</mat-label>
+        <mat-select formControlName="value_segment" multiple>
+          <mat-option *ngFor="let valueSegment of valueSegmentConfig" [value]="valueSegment.value">
+            {{valueSegment.label}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+      <mat-form-field class="input">
+        <mat-label>Handset Model</mat-label>
+        <mat-select formControlName="handset_model" multiple>
+          <mat-option *ngFor="let handsetModel of handsetModelConfig" [value]="handsetModel.value">
+            {{handsetModel.label}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+      <mat-form-field class="input">
+        <mat-label>Handset Brand</mat-label>
+        <mat-select formControlName="handset_brand" multiple>
+          <mat-option *ngFor="let handsetBrand of handsetBrandConfig" [value]="handsetBrand.value">
+            {{handsetBrand.label}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+
+
+
+      <mat-form-field class="input">
+        <mat-label>SIM Type</mat-label>
+        <mat-select formControlName="sub_offering_group_w1">
+          <mat-option *ngFor="let simType of simTypeConfig" [value]="simType.value">
+            {{simType.label}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+      <mat-form-field class="input">
+        <mat-label>4G User?</mat-label>
+        <mat-select formControlName="sim_4g">
+          <mat-option *ngFor="let FourgUser of FourgUsers" [value]="FourgUser.value">
+            {{FourgUser.label}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+      <mat-form-field class="input2">
+        <mat-label>Activity Days (Minimum)</mat-label>
+        <input matInput type="number" formControlName="minActivity" min="0" />
+      </mat-form-field>
+      <mat-form-field class="input2">
+        <mat-label>Activity Days (Maximum)</mat-label>
+        <input matInput type="number" formControlName="maxActivity" min="0" />
+      </mat-form-field>
+      <mat-form-field class="input2">
+        <mat-label>Current Balance (Minimum)</mat-label>
+        <input matInput type="number" formControlName="minBalance" min="0" />
+      </mat-form-field>
+      <mat-form-field class="input2">
+        <mat-label>Current Balance (Maximum)</mat-label>
+        <input matInput type="number" formControlName="maxBalance" min="0" />
+      </mat-form-field>
+
+
+      <mat-action-row>
+        <button mat-button color="warn" (click)="prevStep()">Previous</button>
+        <button mat-button color="primary" (click)="nextStep()">Next</button>
+      </mat-action-row>
+    </mat-expansion-panel>
+
+    <mat-expansion-panel [expanded]="step === 2" (opened)="setStep(2)" hideToggle>
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          LOCATION
+        </mat-panel-title>
+        <mat-panel-description>
+          Location specific filters
+        </mat-panel-description>
+      </mat-expansion-panel-header>
+
+      <mat-form-field class="input">
+        <mat-label>Zone</mat-label>
+        <mat-select formControlName="max_stay_zone" multiple>
+          <mat-option *ngFor="let valueSegment of maxStayZoneConfig" [value]="valueSegment.value">
+            {{valueSegment.label}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+      <mat-form-field class="input">
+        <mat-label>City</mat-label>
+        <mat-select formControlName="max_stay_city" multiple>
+          <mat-option *ngFor="let valueSegment of maxStayCityConfig" [value]="valueSegment.value">
+            {{valueSegment.label}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+      <mat-form-field class="input">
+        <mat-label>Region</mat-label>
+        <mat-select formControlName="maz_stay_region" multiple>
+          <mat-option *ngFor="let valueSegment of maxStayRegionConfig" [value]="valueSegment.value">
+            {{valueSegment.label}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <mat-action-row>
+        <button mat-button color="warn" (click)="prevStep()">Previous</button>
+        <button mat-button color="primary" (click)="nextStep()">Next</button>
+      </mat-action-row>
+    </mat-expansion-panel>
+
+    <mat-expansion-panel [expanded]="step === 3" (opened)="setStep(3)" hideToggle>
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          RECHARGE / REVENUE
+        </mat-panel-title>
+        <mat-panel-description>
+          Recharge/Revenue filters
+
+        </mat-panel-description>
+      </mat-expansion-panel-header>
+
+      <mat-form-field class="input2">
+        <mat-label>Maximum Recharge in last 30 days (Minumum)</mat-label>
+        <input matInput type="number" formControlName="maxRechargeMin" min="0" />
+      </mat-form-field>
+      <mat-form-field class="input2">
+        <mat-label>Maximum Recharge in last 30 days (Maximum)</mat-label>
+        <input matInput type="number" formControlName="maxRechargeMax" min="0" />
+      </mat-form-field>
+      <mat-form-field class="input2">
+        <mat-label>Total Recharge in last 30 days (Minimum)</mat-label>
+        <input matInput type="number" formControlName="totalRechargeMin" min="0" />
+      </mat-form-field>
+      <mat-form-field class="input2">
+        <mat-label>Total Recharge in last 30 days (Maximum)</mat-label>
+        <input matInput type="number" formControlName="totalRechargeMax" min="0" />
+      </mat-form-field>
+      <mat-form-field class="input2">
+        <mat-label>Average Recharge in last 30 days (Minimum)</mat-label>
+        <input matInput type="number" formControlName="avgRechargeMin" min="0" />
+      </mat-form-field>
+      <mat-form-field class="input2">
+        <mat-label>Average Recharge in last 30 days (Maximum)</mat-label>
+        <input matInput type="number" formControlName="avgRechargeMax" min="0" />
+      </mat-form-field>
+      <mat-form-field class="input2">
+        <mat-label>30 day Revenue (Minimum)</mat-label>
+        <input matInput type="number" formControlName="thirtyDayRevenueMin" min="0" />
+      </mat-form-field>
+      <mat-form-field class="input2">
+        <mat-label>30 day Revenue (Maximum)</mat-label>
+        <input matInput type="number" formControlName="thirtyDayRevenueMax" min="0" />
+      </mat-form-field>
+      <mat-form-field class="input2">
+        <mat-label>30-60 day Revenue (Minimum)</mat-label>
+        <input matInput type="number" formControlName="thirtyToSixtyDayRevenueMin" min="0" />
+      </mat-form-field>
+      <mat-form-field class="input2">
+        <mat-label>30-60 day Revenue (Maximum)</mat-label>
+        <input matInput type="number" formControlName="thirtyToSixtyDayRevenueMax" min="0" />
+      </mat-form-field>
+      <mat-form-field class="input2">
+        <mat-label>Voice 30 day Revenue (Minimum)</mat-label>
+        <input matInput type="number" formControlName="voiceThirtyDayRevenueMin" min="0" />
+      </mat-form-field>
+      <mat-form-field class="input2">
+        <mat-label>Voice 30 day Revenue (Maximum)</mat-label>
+        <input matInput type="number" formControlName="voiceThirtyDayRevenueMax" min="0" />
+      </mat-form-field>
+
+      <mat-action-row>
+        <button mat-button color="warn" (click)="prevStep()">Previous</button>
+        <button mat-button color="primary" (click)="nextStep()">Next</button>
+      </mat-action-row>
+    </mat-expansion-panel>
+
+    <mat-expansion-panel [expanded]="step === 4" (opened)="setStep(4)" hideToggle>
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          DORMANCY
+        </mat-panel-title>
+        <mat-panel-description>
+          Dormancy specific filters
+
+        </mat-panel-description>
+      </mat-expansion-panel-header>
+
+      <mat-form-field class="input2">
+        <mat-label>Recharge Dormancy (Minumum)</mat-label>
+        <input matInput type="number" formControlName="rechargeDormancyMin" min="0" />
+      </mat-form-field>
+      <mat-form-field class="input2">
+        <mat-label>Recharge Dormancy (Maximum)</mat-label>
+        <input matInput type="number" formControlName="rechargeDormancyMax" min="0" />
+      </mat-form-field>
+      <mat-form-field class="input2">
+        <mat-label>Dormancy (Minimum)</mat-label>
+        <input matInput type="number" formControlName="dormancyMin" min="0" />
+      </mat-form-field>
+      <mat-form-field class="input2">
+        <mat-label>Dormancy (Maximum)</mat-label>
+        <input matInput type="number" formControlName="dormancyMax" min="0" />
+      </mat-form-field>
+      <mat-form-field class="input2">
+        <mat-label>2G Dormancy (Minimum)</mat-label>
+        <input matInput type="number" formControlName="twoGDormancyMin" min="0" />
+      </mat-form-field>
+      <mat-form-field class="input2">
+        <mat-label>2G Dormancy (Maximum)</mat-label>
+        <input matInput type="number" formControlName="twoGDormancyMax" min="0" />
+      </mat-form-field>
+      <mat-form-field class="input2">
+        <mat-label>3G Dormancy (Minimum)</mat-label>
+        <input matInput type="number" formControlName="threeGDormancyMin" min="0" />
+      </mat-form-field>
+      <mat-form-field class="input2">
+        <mat-label>3G Dormancy (Maximum)</mat-label>
+        <input matInput type="number" formControlName="threeGDormancyMax" min="0" />
+      </mat-form-field>
+      <mat-form-field class="input2">
+        <mat-label>4G Dormancy (Minimum)</mat-label>
+        <input matInput type="number" formControlName="fourGDormancyMin" min="0" />
+      </mat-form-field>
+      <mat-form-field class="input2">
+        <mat-label>4G Dormancy (Maximum)</mat-label>
+        <input matInput type="number" formControlName="fourGDormancyMax" min="0" />
+      </mat-form-field>
+
+      <mat-action-row>
+        <button mat-button color="warn" (click)="prevStep()">Previous</button>
+        <button mat-button color="primary" (click)="nextStep()">Next</button>
+      </mat-action-row>
+    </mat-expansion-panel>
+
+    <mat-expansion-panel [expanded]="step === 5" (opened)="setStep(5)" hideToggle>
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          BUNDLES
+        </mat-panel-title>
+        <mat-panel-description>
+          Product sunbscribers specific filters
+
+        </mat-panel-description>
+      </mat-expansion-panel-header>
+
+      <mat-form-field class="input">
+        <mat-label>Commercial Name</mat-label>
+        <mat-select formControlName="comrcl_name" multiple>
+          <mat-option *ngFor="let valueSegment of productConfig" [value]="valueSegment.value">
+            {{valueSegment.label}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+
+
+
+
+      <mat-action-row>
+        <button mat-button color="warn" (click)="prevStep()">Previous</button>
+        <button mat-button color="primary" (click)="nextStep()">Next</button>
+      </mat-action-row>
+    </mat-expansion-panel>
+
+    <mat-expansion-panel [expanded]="step === 6" (opened)="setStep(6)" hideToggle>
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          DIGITAL
+        </mat-panel-title>
+        <mat-panel-description>
+          Digital profiling
+
+        </mat-panel-description>
+      </mat-expansion-panel-header>
+      <section class="example-section">
+        <h4>Users of:</h4>
+        <p><mat-checkbox formControlName="jazz_world">Jazz World</mat-checkbox></p>
+        <p><mat-checkbox formControlName="jazz_cash">Jazz Cash</mat-checkbox></p>
+        <p><mat-checkbox formControlName="BIP">BIP</mat-checkbox></p>
+        <p><mat-checkbox formControlName="tamasha">Tamasha</mat-checkbox></p>
+        <p><mat-checkbox formControlName="bajao">Bajao</mat-checkbox></p>
+        <p><mat-checkbox formControlName="game_now">Game Now</mat-checkbox></p>
+      </section>
+      <mat-action-row>
+        <button mat-button color="warn" (click)="prevStep()">Previous</button>
+        <button mat-button color="primary" (click)="onSubmit()">Submit</button>
+      </mat-action-row>
+    </mat-expansion-panel>
+
+  </mat-accordion>
+</form>

@@ -1,0 +1,38 @@
+.stat-container {
+    display: flex;
+    width: 100%;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.stat-card {
+    width: 180px;
+    height: 100px;
+    background-color: black;
+    color: white;
+    padding: 5px 15px;
+    border-radius: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    margin: 0px 5px;
+}
+
+.stat-card_number {
+    font-weight: 600;
+    font-size: 30px;
+    width: 180px;
+    text-align: end;
+}
+
+.stat-card_label {
+    font-weight: 350;
+    font-size: 20px;
+    width: 100%;
+
+}
+
+.graph-container {
+    
+}

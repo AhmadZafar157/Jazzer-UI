@@ -1,13 +1,26 @@
-<div class="head">
-    <span mat-dialog-title> {{currentCampaign.title}}</span>
-</div>
-<mat-dialog-content class="mat-typography">
-    <div class="bases" *ngFor="let item of objectToArray(currentCampaign)">
-        <span *ngIf="item.value!=null"> {{ item.key }}: {{ item.value }}</span><br>
-        <!-- <span *ngIf="item.count" style="width: 10%;">{{item.count}}</span>
-        <span *ngIf="item.createdAt" style="width: 30%;">{{item.createdAt}}</span> -->
-
-        <!-- <mat-chip (click)="openBase(item)" style="cursor: pointer; background-color: rgb(230, 33, 33);">Details</mat-chip> -->
+<div>
+    <div mat-dialog-title class="detail-container-head">
+        <span class="label">Campaign Title</span>
+        <span class="value">{{currentCampaign.campaign_name}}</span>
     </div>
-    <br>
-</mat-dialog-content>
+    <mat-dialog-content class="mat-typography">
+        <div class="detail-container-body-items">
+            <div class="detail-container-body-item">
+                <span class="label">STAKEHOLDER</span>
+                <span class="value">{{currentCampaign.team_id.name}}</span>
+            </div>
+            <div class="detail-container-body-item">
+                <span class="label">STATUS</span>
+                <span class="value">{{currentCampaign.status}}</span>
+            </div>
+            <div class="detail-container-body-item">
+                <span class="label">SMS TEXT</span>
+                <span class="value">{{currentCampaign.sms_text}}</span>
+            </div>
+            <div class="detail-container-body-item">
+                <span class="label">BROADCAST DATE</span>
+                <span class="value">{{currentCampaign.BROADCAST_DATE}}</span>
+            </div>
+        </div>
+    </mat-dialog-content>
+</div>
