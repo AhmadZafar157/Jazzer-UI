@@ -1,13 +1,132 @@
-<div class="head">
-    <span mat-dialog-title> {{currentBase.base_name}}</span>
-</div>
-<mat-dialog-content class="mat-typography">
-    <div class="bases" *ngFor="let item of objectToArray(currentBase)">
-        <span *ngIf="item.value!=null"> {{ item.key }}: {{ item.value }}</span><br>
-        <!-- <span *ngIf="item.count" style="width: 10%;">{{item.count}}</span>
-        <span *ngIf="item.createdAt" style="width: 30%;">{{item.createdAt}}</span> -->
-
-        <!-- <mat-chip (click)="openBase(item)" style="cursor: pointer; background-color: rgb(230, 33, 33);">Details</mat-chip> -->
+<div>
+    <div mat-dialog-title class="detail-container-head">
+        <span class="label">SEGMENT NAME</span>
+        <span class="value">{{currentBase.base_name}}</span>
     </div>
-    <br>
-</mat-dialog-content>
+
+    <mat-dialog-content class="mat-typography">
+        <div class="detail-container-body-items">
+            <div class="detail-container-body-item">
+                <span class="label">DESCRIPTION</span>
+                <span class="value">{{currentBase.description}}</span>
+            </div>
+            <div class="detail-container-body-item">
+                <span class="label">SEGMENT SIZE</span>
+                <span class="value">{{currentBase.count}}</span>
+            </div>
+            <div class="detail-container-body-item">
+                <span class="label">DATE/TIME</span>
+                <span class="value">{{currentBase.updatedAt}}</span>
+            </div>
+            <div class="detail-container-body-item">
+                <span class="label">EXECUTION POTENTIAL</span>
+                <span class="value">{{currentBase.executedOn}}</span>
+            </div>
+            <div class="detail-container-body-item">
+                <span class="label">VALUE SEGMENT</span>
+                <span class="value">{{currentBase.value_segment}}</span>
+            </div>
+            <div class="detail-container-body-item">
+                <span class="label">SIM TYPE</span>
+                <span class="value">{{currentBase.sub_offering_group_w1}}</span>
+            </div>
+            <div class="detail-container-body-item">
+                <span class="label">DORMANCY</span>
+                <span class="value">{{currentBase.dormant_days}}</span>
+            </div>
+            <div class="detail-container-body-item">
+                <span class="label">2G DORMANCY</span>
+                <span class="value">{{currentBase.dormant_2g}}</span>
+            </div>
+            <div class="detail-container-body-item">
+                <span class="label">3G DORMANCY</span>
+                <span class="value">{{currentBase.dormant_3g}}</span>
+            </div>
+            <div class="detail-container-body-item">
+                <span class="label">4G DORMANCY</span>
+                <span class="value">{{currentBase.dormant_4g}}</span>
+            </div>
+            <div class="detail-container-body-item">
+                <span class="label">RECHARGE DORMANCY</span>
+                <span class="value">{{currentBase.recharge_dormancy}}</span>
+            </div>
+            <div class="detail-container-body-item">
+                <span class="label">NO. OF ACTIVITY DAYS (30)</span>
+                <span class="value">{{currentBase.activeDays_30_days}}</span>
+            </div>
+            <div class="detail-container-body-item">
+                <span class="label">CITY</span>
+                <span class="value">{{currentBase.max_stay_city}}</span>
+            </div>
+            <div class="detail-container-body-item">
+                <span class="label">ZONE</span>
+                <span class="value">{{currentBase.max_stay_zone}}</span>
+            </div>
+            <div class="detail-container-body-item">
+                <span class="label">REGION</span>
+                <span class="value">{{currentBase.maz_stay_region}}</span>
+            </div>
+            <div class="detail-container-body-item">
+                <span class="label">HANDSET BRAND</span>
+                <span class="value">{{currentBase.handset_brand}}</span>
+            </div>
+            <div class="detail-container-body-item">
+                <span class="label">HANDSET MODEL</span>
+                <span class="value">{{currentBase.handset_model}}</span>
+            </div>
+            <div class="detail-container-body-item">
+                <span class="label">TOTAL RECHARGE (30 Days)</span>
+                <span class="value">{{currentBase.recharge_30_days}}</span>
+            </div>
+            <div class="detail-container-body-item">
+                <span class="label">AVG. RECHARGE (30 Days)</span>
+                <span class="value">{{currentBase.recharge_average_monthly}}</span>
+            </div>
+            <div class="detail-container-body-item">
+                <span class="label">MAX. RECHARGE (30 Days)</span>
+                <span class="value">{{currentBase.recharge_max_30_days}}</span>
+            </div>
+            <div class="detail-container-body-item">
+                <span class="label">TOTAL REVENUE (30 Days)</span>
+                <span class="value">{{currentBase.revenue_30_days}}</span>
+            </div>
+            <div class="detail-container-body-item">
+                <span class="label">TOTAL REVENUE (30 - 60 Days)</span>
+                <span class="value">{{currentBase.revenue_31_60_days}}</span>
+            </div>
+            <div class="detail-container-body-item">
+                <span class="label">VOICE REVENUE (30 Days)</span>
+                <span class="value">{{currentBase.revenue_voice_30_days}}</span>
+            </div>
+            <div class="detail-container-body-item">
+                <span class="label">TAMASHA ACTIVE</span>
+                <span class="value">{{currentBase.tamasha}}</span>
+            </div>
+            <div class="detail-container-body-item">
+                <span class="label">JAZZ WORLD ACTIVE</span>
+                <span class="value">{{currentBase.jazz_world}}</span>
+            </div>
+            <div class="detail-container-body-item">
+                <span class="label">JAZZ CASH ACTIVE</span>
+                <span class="value">{{currentBase.jazz_cash}}</span>
+            </div>
+            <div class="detail-container-body-item">
+                <span class="label">BAJAO ACTIVE</span>
+                <span class="value">{{currentBase.bajao}}</span>
+            </div>
+            <div class="detail-container-body-item">
+                <span class="label">GAME NOW ACTIVE</span>
+                <span class="value">{{currentBase.game_now}}</span>
+            </div>
+            <div class="detail-container-body-item">
+                <span class="label">BIP ACTIVE</span>
+                <span class="value">{{currentBase.BIP}}</span>
+            </div>
+            <div class="detail-container-body-item">
+                <span class="label">PRODUCT SUBSCRIBERS</span>
+                <span class="value">{{currentBase.comrcl_name}}</span>
+            </div>
+        </div>
+
+    </mat-dialog-content>
+</div>

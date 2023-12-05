@@ -1,6 +1,10 @@
 <div class="head">
     <h1 mat-dialog-title>All Teams</h1>
-    <button *ngIf="user.user_type == 'super_admin'" style="background-color: black; color: white; width: 150px;"  mat-button cdkFocusInitial [mat-dialog-close]="true" (click)="createNewTeam()">Create New</button>
+    <div>
+        <button *ngIf="user.user_type == 'super_admin'" style="background-color: black; color: white; width: 150px;"  mat-button cdkFocusInitial [mat-dialog-close]="true" (click)="createNewTeam()">Create New</button>
+        <button style="background-color: black; color: white; width: 250px; margin: 10px;" mat-button cdkFocusInitial
+         disabled="true">Remaining Capacity: {{user.team.remainingCapacity}}</button>
+    </div>
 </div>
 <!-- <mat-dialog-content class="mat-typography">
     <div class="campaigns" *ngFor="let item of campaigns">

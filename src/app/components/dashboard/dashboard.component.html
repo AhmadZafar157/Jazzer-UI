@@ -5,6 +5,11 @@
         </div>
         <mat-divider style="background-color: white;"></mat-divider>
         <mat-list style="height: calc(100vh - 120px - 120px);" role="list">
+            <mat-list-item style="margin-top: 15px;" role="listitem" (click)="openComponent(0)">
+                <div [ngClass]="{selected: currentTab==0}" class="nav-item">
+                    <span>Home</span>
+                </div>
+            </mat-list-item>
             <mat-list-item style="margin-top: 15px;" role="listitem" (click)="openComponent(1)">
                 <div [ngClass]="{selected: currentTab==1}" class="nav-item">
                     <span>Segments</span>
@@ -21,7 +26,7 @@
                 </div>
             </mat-list-item>
             <mat-list-item *ngIf="!isNonCVM" style="margin-top: 15px;" role="listitem" (click)="goToUserCreation()">
-                <div class="nav-item">
+                <div [ngClass]="{selected: currentTab==4}" class="nav-item">
                     <span>OnBoard User</span>
                 </div>
             </mat-list-item>
@@ -36,17 +41,14 @@
         
     </div>
     <div class="main-content">
-        <kt-card>
-            <div class="stats">
-                <h1>Stats</h1>
-            </div>
-        </kt-card>
-        <div class="content">
+         
+       <!-- <div class="content">
             <kt-card>
                 <app-bases *ngIf="currentTab==1"></app-bases>
                 <app-campaigns *ngIf="currentTab==2"></app-campaigns>
                 <app-teams *ngIf="currentTab==3"></app-teams>
             </kt-card>
-        </div>
+        </div> -->
+        <router-outlet></router-outlet>
     </div>
 </body>>

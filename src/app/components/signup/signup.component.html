@@ -16,15 +16,15 @@
             <input type="password" formControlName="password" matInput placeholder="Password" value="">
         </mat-form-field>
     
-        <mat-form-field class="input">
+        <mat-form-field class="input" *ngIf="user.user_type == 'super_admin'">
             <mat-label>Team</mat-label>
             <mat-select formControlName="team"  multiple>
               <mat-option *ngFor="let team of teams" [value]="team._id">{{team.shortCode}}</mat-option>
             </mat-select>
         </mat-form-field>
     
-        <mat-button-toggle-group formControlName="user_type" name="userType" aria-label="User Type">
-            <mat-button-toggle value="cvm_type">Admin</mat-button-toggle>
+        <mat-button-toggle-group *ngIf="user.user_type == 'super_admin'" formControlName="user_type" name="userType" aria-label="User Type">
+            <mat-button-toggle value="cvm_type">Team Lead</mat-button-toggle>
             <mat-button-toggle value="non_cvm_type">Team Member</mat-button-toggle>
         </mat-button-toggle-group>
         <br>
